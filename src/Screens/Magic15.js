@@ -36,6 +36,7 @@ function Magic15 (props) {
   switch (winCards[0]) {
     case "cross" :  {statusDisplay = <p>Player 1 has won! <br /> Well Done! {restartButton} </p>; break}
     case "nought" : {statusDisplay = <p>Player 2 has won! <br /> Well Done! {restartButton} </p>; break }
+    case "drawn" : {statusDisplay = <p>No-one has won. <br /> Good game! {restartButton} </p>; break }
     default : {statusDisplay = <p>Pick a card or {restartButton}<br />   {notChosenList}</p>}
   }
 

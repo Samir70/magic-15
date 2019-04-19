@@ -28,6 +28,7 @@ function CheckForWin (player, cards) {
     sumList = sumList.filter(s => s[0] === 15);
     console.log("this is sumlist after filtering: ", sumList)
     if (sumList.length > 0) { return [player, ...sumList[0].slice(1)]}
+       if (cards.length === 5) {return ["drawn", 0, 0, 0]}
           else {return noWinner};
 }
 

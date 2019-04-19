@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Settings from './Screens/Settings';
 import TicTacToe from './Screens/TicTacToe';
 import Magic15 from './Screens/Magic15';
-import RandomMove from './CompMoves/CompMoves';
+import {RandomMove, CheckForWin, noWinner} from './CompMoves/CompMoves';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +12,8 @@ class App extends Component {
     gamePosition: {cardsLeft:[1, 2, 3, 4, 5, 6, 7, 8, 9], p1Cards:[], p2Cards:[]},
     lastMoveMade: -1,
     sideToMove: "cross", // Crosses normally goes first
-    computerToPlay: "nought"
+    computerToPlay: "nought", 
+    winner: ["no-one", 0, 0, 0]
   }
 
   switchModeHandler = () => {
@@ -26,14 +27,26 @@ class App extends Component {
     var currentCardsLeft = [...this.state.gamePosition.cardsLeft];
     var currentP1Cards = [...this.state.gamePosition.p1Cards];
     var currentP2Cards = [...this.state.gamePosition.p2Cards];
-    if (currentCardsLeft.includes(Number(card))) {
+    var winningCards;
+    if (currentSideToMove !== "pause" && currentCardsLeft.includes(Number(card))) {
       currentCardsLeft = currentCardsLeft.filter(x => x !== Number(card));
-      (currentSideToMove === "cross") ? currentP1Cards.push(Number(card)) : currentP2Cards.push(Number(card)); 
-      (currentSideToMove === "cross") ? currentSideToMove = "nought" : currentSideToMove = "cross";
+      if (currentSideToMove === "cross") {
+        currentP1Cards.push(Number(card));
+        currentSideToMove = "nought";
+        winningCards = CheckForWin("cross", currentP1Cards)
+      } else {
+        currentP2Cards.push(Number(card)); 
+        currentSideToMove = "cross";
+        winningCards = CheckForWin("nought", currentP2Cards)
+      } 
+
+      if (winningCards !== noWinner) {
+        currentSideToMove = "pause"
+      }
 
       this.setState({sideToMove: currentSideToMove, 
         gamePosition: {cardsLeft: currentCardsLeft, p1Cards:currentP1Cards, p2Cards:currentP2Cards},
-        lastMoveMade: Number(card) })     
+        lastMoveMade: Number(card), winner:winningCards })     
     }    
   }
 
@@ -61,6 +74,8 @@ class App extends Component {
           && this.state.computerToPlay === this.state.sideToMove) {
              this.cardChosenHandler(RandomMove(this.state.gamePosition.cardsLeft))
     }
+
+    console.log("And the winner is:", this.state.winner)
 
     return (
       <div className="App">

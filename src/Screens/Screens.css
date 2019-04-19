@@ -1,0 +1,218 @@
+.mainScreen {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+/* Intended for settings screen*/
+.oneOfTwoCol {
+    width: 50vw;
+    animation: slideLeft 1s ease;
+}
+
+@keyframes slideLeft {
+    0%   {opacity: 0; transform: translateX(100%)}
+    100% {opacity: 1; transform: translateX(0%)}
+}
+
+.modeDisplay {
+    border: 3px ridge gold;
+    background: rgb(255, 72, 0);
+    width: auto;
+    padding: 15px;
+    border-radius: 50%;
+}
+
+.switchModeBtn {
+    text-decoration: underline;
+}
+
+.switchModeBtn:hover {
+    color: red;
+}
+
+/* Intended for Noughts and Crosses (Tic-Tac-Toe) */
+.ticTacBoard {
+    height: 90vmin;
+    width: 90vmin;
+    display: table;
+    border-spacing: 3px;
+    animation: slideDown 1s ease;
+}
+
+@keyframes slideDown {
+    0%   {opacity: 0; transform: translateY(-100%)}
+    100% {opacity: 1; transform: translateY(0%)}
+}
+
+.moveAppear {
+    animation: growText 1s linear;
+}
+
+@keyframes growText {
+    0%   {font-size: 1vmin}
+    100% {font-size: 20vmin}
+}
+
+td {
+    display: table-cell;
+    width: 30vmin;
+    vertical-align: middle;
+    border: 2px groove gold;
+    font-size: 20vmin;
+}
+
+.topLeft {
+    border-top: none;
+    border-left: none;  
+}
+
+.topMiddle {
+    border-top: none;  
+}
+
+.topRight {
+    border-top: none;
+    border-right: none;
+}
+
+.midLeft {
+    border-left: none;  
+}
+
+.midRight {
+    border-right: none;
+}
+
+.botLeft {
+    border-bottom: none;
+    border-left: none;  
+}
+
+.botMiddle {
+    border-bottom: none;  
+}
+
+.botRight {
+    border-bottom: none;
+    border-right: none;
+}
+
+/* Intended for Magic15 screen*/
+#magic15Container {
+    margin: 1px;
+    height: 90vh;
+    animation: slideRight 1s ease;
+}
+
+.freeCardArea {
+    position: fixed;
+    left: 1vw;
+    width: 35vw;    
+    min-height: 90vh;
+}
+
+.playerArea {
+    position: fixed;
+    left: 40vw;
+    width: 60vw;
+    min-height: 90vh;
+}
+
+.p1Area {
+    height: 44vh;
+}
+
+.p2Area {
+    height: 44vh;
+}
+
+.card {
+    background: lightblue;
+    color: black;
+    border: 2px solid green;
+    border-radius: 15%;
+    margin: 1vw;
+    width: 10vw;
+    height: 14vh;
+    font-size: 10vw;
+    text-align: center;
+}
+
+.card-player1 {
+    background: lightgreen;
+    color: white;
+    border: 2px solid black;
+    animation: cardGrow 0.5s ease;
+}
+.card-player2 {
+    background: lightcoral;
+    color: white;
+    border: 2px solid black;
+    animation: cardGrow 0.5s ease;
+}
+
+@keyframes cardGrow {
+    0%   {transform: scale(0)}
+    100% {transform: scale(1)}
+}
+  
+@media (orientation: landscape) {
+    .freeCardArea {
+        position: unset;
+        width: auto;   
+        min-height: unset;
+        height: auto;
+    }
+    
+    .playerArea {
+        display: flex;
+        position: unset;
+        width: auto;
+        min-height: auto;
+        justify-content: space-between;
+    }
+    
+    .p1Area {
+        display: inline-block;
+        height: auto;
+        width: 47vw;
+    }
+    
+    .p2Area {
+        display: inline-block;
+        height: auto;
+        width: 47vw;
+    }
+
+    .card {
+        height: 10vh;
+        font-size: 8vh;
+    }
+}
+
+@keyframes slideRight {
+    0%   {opacity: 0; transform: translateX(-100%)}
+    100% {opacity: 1; transform: translateX(0%)}
+}
+
+
+/* General purpose */
+p {
+    padding: 1px 10px;
+}
+
+/* borders: blue is intended for neutral, red for the side to move*/
+.blueBorder {
+    border: 1px solid blue;
+    border-radius: 5%;
+    margin: 2px;
+    padding: 5px;
+}
+  
+.redBorder {
+    border: 2px solid red;
+    border-radius: 5%;
+    margin: 2px;
+    padding: 5px;
+}

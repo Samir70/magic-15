@@ -84,11 +84,13 @@ class App extends Component {
           <Magic15 
             gamePos={this.state.gamePosition}
             sideMove={this.state.sideToMove}
+            whoWon={this.state.winner}
             click={this.cardChosenHandler} /> }
         {this.state.screenToShow === "n&c" && 
           <TicTacToe 
             gamePos={this.state.gamePosition}
             lastMove={this.state.lastMoveMade}
+            whoWon={this.state.winner}
             click={this.cardChosenHandler} />}
         {this.state.screenToShow === "settings" && 
           <Settings 

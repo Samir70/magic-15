@@ -4,6 +4,7 @@ function Magic15 (props) {
   let player1Cards = props.gamePos.p1Cards;
   let player2Cards = props.gamePos.p2Cards;
   let notChosen = props.gamePos.cardsLeft;
+  var winCards = props.whoWon;
 
   var notChosenList = notChosen.map((card) => {
     return <button 
@@ -12,10 +13,14 @@ function Magic15 (props) {
       key={card} >{card}</button>
   })
   var player1CardsList = player1Cards.map((card) => {
-    return <button className="card card-player1" key={card}>{card}</button>
+    if (winCards.includes(card)) {
+      return <button className="card card-player1 cardPulse" key={card}>{card}</button>
+    } else { return <button className="card card-player1" key={card}>{card}</button> }
   })
   var player2CardsList = player2Cards.map((card) => {
-    return <button className="card card-player2" key={card}>{card}</button>
+    if (winCards.includes(card)) {
+      return <button className="card card-player2 cardPulse" key={card}>{card}</button>
+    } else { return <button className="card card-player2" key={card}>{card}</button> }
   })
 
   let borderClasses = ["p1Area", "p2Area"];
@@ -25,12 +30,19 @@ function Magic15 (props) {
     borderClasses[0] += " blueBorder"; borderClasses[1] += " redBorder"
   }
 
+  let statusDisplay;
+
+  switch (winCards[0]) {
+    case "cross" :  {statusDisplay = <p>Player 1 has won! <br /> Well Done!</p>; break}
+    case "nought" : {statusDisplay = <p>Player 2 has won! <br /> Well Done!</p>; break }
+    default : {statusDisplay = <p>Pick a card <br />   {notChosenList}</p>}
+  }
+
     return (
-        <div id="magic15Container">
-        <div className="freeCardArea blueBorder">
-          <p>Pick a card</p> 
-          {notChosenList}
-        </div>
+      <div id="magic15Container">
+          <div className="freeCardArea blueBorder">
+            {statusDisplay}
+          </div>
         <div className="playerArea">
           <div className={borderClasses[0]} >
             <p>Player 1's cards</p>
@@ -41,8 +53,8 @@ function Magic15 (props) {
             {player2CardsList}
           </div>
         </div>
-      </div>
-    )
+    </div>
+  )
 }
 
 export default Magic15;

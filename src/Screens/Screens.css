@@ -213,6 +213,11 @@ p {
     padding: 1px 10px;
 }
 
+.restartBtn {
+    background : lightblue;
+    border-radius: 15%;
+}
+
 /* borders: blue is intended for neutral, red for the side to move*/
 .blueBorder {
     border: 1px solid blue;

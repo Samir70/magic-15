@@ -11,7 +11,7 @@ class App extends Component {
     playMode: "Human VS Computer",
     gamePosition: {cardsLeft:[1, 2, 3, 4, 5, 6, 7, 8, 9], p1Cards:[], p2Cards:[]},
     lastMoveMade: -1,
-    sideToMove: "cross", // Crosses normally goes first
+    sideToMove: "cross", // The cross player normally goes first!
     computerToPlay: "nought", 
     winner: ["no-one", 0, 0, 0]
   }
@@ -19,6 +19,15 @@ class App extends Component {
   switchModeHandler = () => {
     this.state.playMode === "Human VS Computer" ? 
         this.setState({playMode: "Human VS Human"}) : this.setState({playMode: "Human VS Computer"})           
+  }
+
+  restartHandler = () => {
+    this.setState({
+      gamePosition: {cardsLeft:[1, 2, 3, 4, 5, 6, 7, 8, 9], p1Cards:[], p2Cards:[]},
+      lastMoveMade: -1,
+      sideToMove: "cross", // The cross player normally goes first!
+      computerToPlay: "nought", 
+      winner: ["no-one", 0, 0, 0]})
   }
 
   cardChosenHandler = (card) => {
@@ -85,12 +94,14 @@ class App extends Component {
             gamePos={this.state.gamePosition}
             sideMove={this.state.sideToMove}
             whoWon={this.state.winner}
+            restart={this.restartHandler}
             click={this.cardChosenHandler} /> }
         {this.state.screenToShow === "n&c" && 
           <TicTacToe 
             gamePos={this.state.gamePosition}
             lastMove={this.state.lastMoveMade}
             whoWon={this.state.winner}
+            restart={this.restartHandler}
             click={this.cardChosenHandler} />}
         {this.state.screenToShow === "settings" && 
           <Settings 

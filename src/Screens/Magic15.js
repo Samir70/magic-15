@@ -30,12 +30,13 @@ function Magic15 (props) {
     borderClasses[0] += " blueBorder"; borderClasses[1] += " redBorder"
   }
 
+  let restartButton = <button className="restartBtn" onClick={props.restart}>Restart</button>
   let statusDisplay;
 
   switch (winCards[0]) {
-    case "cross" :  {statusDisplay = <p>Player 1 has won! <br /> Well Done!</p>; break}
-    case "nought" : {statusDisplay = <p>Player 2 has won! <br /> Well Done!</p>; break }
-    default : {statusDisplay = <p>Pick a card <br />   {notChosenList}</p>}
+    case "cross" :  {statusDisplay = <p>Player 1 has won! <br /> Well Done! {restartButton} </p>; break}
+    case "nought" : {statusDisplay = <p>Player 2 has won! <br /> Well Done! {restartButton} </p>; break }
+    default : {statusDisplay = <p>Pick a card or {restartButton}<br />   {notChosenList}</p>}
   }
 
     return (

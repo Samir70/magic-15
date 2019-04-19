@@ -41,13 +41,16 @@ function TicTacToe (props) {
     })
     
     return (
-        <table className="mainScreen">
-            <tbody className="ticTacBoard">
-                <tr>{ttBoard.splice(0,3)}</tr>
-                <tr>{ttBoard.splice(0,3)}</tr>
-                <tr>{ttBoard.splice(0,3)}</tr>
-            </tbody>
-        </table>
+        <div>
+            <button className="restartBtn" onClick={props.restart}>Restart</button>
+            <table className="mainScreen">
+                <tbody className="ticTacBoard">
+                    <tr>{ttBoard.splice(0,3)}</tr>
+                    <tr>{ttBoard.splice(0,3)}</tr>
+                    <tr>{ttBoard.splice(0,3)}</tr>
+                </tbody>
+            </table>
+        </div>
     )
 }
 
